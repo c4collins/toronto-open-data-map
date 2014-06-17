@@ -1,0 +1,42 @@
+@require "reset"
+@require "colors"
+@require "site"
+@require "map"
+
+body
+    background-color body-background-color
+
+#header
+    border-bottom 4px solid blue
+    background-color header-color
+    margin-bottom 20px
+    h1 
+        padding 20px
+
+    nav
+        background-color header-color
+        ul
+            li
+                display inline-block
+                margin auto 10px
+                a
+                    
+                    text-decoration none
+                a:hover
+                    color orange
+
+section
+    width 800px
+    margin 0 auto
+    padding 20px
+    background-color: main-background-color
+    border-radius 5px
+    border 1px solid border-color
+    box-shadow 1px 1px 10px 1px border-color
+    header
+        h1 
+            font-size 20px
+
+footer 
+    p
+        font-size 10px

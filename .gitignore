@@ -1,0 +1,5 @@
+*.pyc
+*.log
+src/js-libs/*
+www/js/libs/*
+www/data/*
