@@ -1,5 +1,3 @@
-*.pyc
 *.log
-src/js-libs/*
-www/js/libs/*
+source/*
 node_modules/*

@@ -24,6 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+
+// var port = Number(process.env.PORT || 5000);
+// app.listen(port, function(){
+//     console.log("Listening on port " + port);
+// });
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
