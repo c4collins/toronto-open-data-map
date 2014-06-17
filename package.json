@@ -45,38 +45,3 @@
     "stylus": "^0.46.3"
   }
 }
-{
-  "name": "toronto-open-data-maps",
-  "version": "0.0.0",
-  "main": "www/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/c4collins/toronto-open-data-map.git"
-  },
-  "keywords": [
-    "leaflet",
-    "mapbox",
-    "toronto",
-    "infrastructure"
-  ],
-  "author": "Connor Collins",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/c4collins/toronto-open-data-map/issues"
-  },
-  "homepage": "https://github.com/c4collins/toronto-open-data-map",
-  "engines": {
-    "node": "0.10.28"
-  },
-  "dependencies": {
-    "coffee-script": "^1.7.1",
-    "express": "^4.4.3",
-    "jade": "^1.3.1",
-    "logfmt": "^1.1.2",
-    "requirejs": "^2.1.14",
-    "stylus": "^0.46.3"
-  }
-}
