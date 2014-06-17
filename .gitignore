@@ -2,4 +2,4 @@
 *.log
 src/js-libs/*
 www/js/libs/*
-www/data/*
+node_modules/*

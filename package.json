@@ -1,0 +1,82 @@
+{
+  "name": "TODM",
+  "version": "0.0.1",
+  "description": "Plotting the City of Toronto's Open Data",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "description": "This project plans to add all the data provided by the City of Toronto's Open Data initiative to a map so it is easily viewable.  I am hoping to build mechanisms for easily converting the data from various formats given by the City of Toronto to usable geoJSON data for leaflet/mapbox.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c4collins/toronto-open-data-map.git"
+  },
+  "keywords": [
+    "leaflet",
+    "mapbox",
+    "toronto",
+    "infrastructure"
+  ],
+  "author": "Connor Collins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c4collins/toronto-open-data-map/issues"
+  },
+  "homepage": "https://github.com/c4collins/toronto-open-data-map",
+  "engines": {
+    "node": "0.10.28"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "coffee-script": "^1.7.1",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "express": "~4.2.0",
+    "jade": "~1.3.0",
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-stylus": "^0.17.0",
+    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-nodemon": "^0.2.1",
+    "stylus": "^0.46.3"
+  }
+}
+{
+  "name": "toronto-open-data-maps",
+  "version": "0.0.0",
+  "main": "www/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c4collins/toronto-open-data-map.git"
+  },
+  "keywords": [
+    "leaflet",
+    "mapbox",
+    "toronto",
+    "infrastructure"
+  ],
+  "author": "Connor Collins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c4collins/toronto-open-data-map/issues"
+  },
+  "homepage": "https://github.com/c4collins/toronto-open-data-map",
+  "engines": {
+    "node": "0.10.28"
+  },
+  "dependencies": {
+    "coffee-script": "^1.7.1",
+    "express": "^4.4.3",
+    "jade": "^1.3.1",
+    "logfmt": "^1.1.2",
+    "requirejs": "^2.1.14",
+    "stylus": "^0.46.3"
+  }
+}

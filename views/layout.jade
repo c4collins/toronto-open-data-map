@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title City of Toronto Open Data Maps
+    link(rel="stylesheet" type="text/stylesheet" href="//api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css")
+    link(rel="stylesheet" type="text/stylesheet" href="/stylesheets/main.css")
+  body
+    #header
+      h1 City of Toronto Open Data Mapping
+      include includes/site-nav
+
+    block content
+
+    footer
+      p Connor Collins 
+        span.js-data-copyright-year
+      p.updated-last Data last updated:
+        span.js-data-updated-last
+
+    script(src="javascripts/libs/require.min.js" data-main="javascripts/main.min")
