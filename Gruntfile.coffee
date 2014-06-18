@@ -19,9 +19,9 @@ module.exports = (grunt)->
       main:
         options:
           banner: "/* Connor Collins made this. */"
-          mangle: false
-            # except: ['jQuery', '$'] # When true this could be useful
-          beautify: true
+          mangle:true
+          # except: ['jQuery', '$'] # When true this could be useful
+          beautify: false
           drop_console: true
         files: [
           expand: true
@@ -35,7 +35,7 @@ module.exports = (grunt)->
         options:
           mangle: false
           beautify: true
-          drop_console: true
+          drop_console: false
         files: [
           expand: true
           flatten: true
@@ -80,4 +80,5 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
 
-  grunt.registerTask 'default', ['coffee', 'stylus', 'uglify']
+  grunt.registerTask 'default', ['coffee', 'stylus', 'uglify:main', 'uglify:modules']
+  grunt.registerTask 'complete', ['coffee', 'stylus', 'uglify']

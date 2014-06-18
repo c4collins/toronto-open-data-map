@@ -1,12 +1,11 @@
 {
   "name": "TODM",
   "version": "0.0.1",
-  "description": "Plotting the City of Toronto's Open Data",
+  "description": "This project plans to add all the data provided by the City of Toronto's Open Data initiative to a map so it is easily viewable.  I am hoping to build mechanisms for easily converting the data from various formats given by the City of Toronto to usable geoJSON data for leaflet/mapbox.",
   "private": false,
   "scripts": {
     "start": "node ./bin/www"
   },
-  "description": "This project plans to add all the data provided by the City of Toronto's Open Data initiative to a map so it is easily viewable.  I am hoping to build mechanisms for easily converting the data from various formats given by the City of Toronto to usable geoJSON data for leaflet/mapbox.",
   "repository": {
     "type": "git",
     "url": "https://github.com/c4collins/toronto-open-data-map.git"
@@ -33,8 +32,11 @@
     "debug": "~0.7.4",
     "express": "~4.2.0",
     "jade": "~1.3.0",
+    "mongodb": "^1.4.6",
     "morgan": "~1.0.0",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "xml-stream": "^0.4.4",
+    "xml2js": "^0.4.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
