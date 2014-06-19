@@ -87,38 +87,47 @@ define ['jquery', 'mapbox'], (jquery, mapbox)->
             button = $ "<button />", text:name, id:name.lower()
             @nav_el.append button
             return button
-        addBikeshareData:->
+        getData:(url, cb, layer) ->
             self = this
+            return $.get(url).success (d, s, x)-> cb d, s, x, layer, self
+        addMarkerToMap:(data, icon, popup, layerGroup)->
+            options = 
+                riseOnHover: true
+                title: data.options.title
+                alt: data.options.alt
+                opacity: data.options.opacity
+            return layerGroup.addLayer new L.marker(data.loc, options).setIcon(icon).bindPopup(popup)
+
+        addBikeshareData:->
             bikeshareLayer = new L.featureGroup();
             @markerLayers.addLayer bikeshareLayer
-            @getBikeshareData().success (d, status, XHR)->
-                for station in d.stations
-                    if station.installed
-                        marker = new L.marker L.latLng(station.lat, station.long),
-                            title:station.name
-                            alt:station.name
-                            opacity:parseInt(station.nbBikes)/(parseInt(station.nbEmptyDocks)+parseInt(station.nbBikes))
-                            riseOnHover: true
-                        icon_size = 50
-                        icon = new L.icon(
-                            "iconUrl": '../images/toronto_circle_logo.png'
-                            "iconSize": [icon_size, icon_size]
-                            "iconAnchor": [icon_size/2, icon_size]
-                            "popupAnchor": [0, -icon_size/2]
-                            "className": "bikeshareLogo"
-                        ) 
-                        console.log icon
-                        marker.setIcon icon
-                        console.log marker
-                        popupHTML = self.getBikesharePopup(station)
-                        marker.bindPopup popupHTML
-                        bikeshareLayer.addLayer marker
-                self.map.fitBounds bikeshareLayer.getBounds()
+            @getData '/api/bikeshare', @createBikeshareMarkers, bikeshareLayer
             return
-        getBikeshareData:->
-            return $.get '/api/bikeshare'
+        createBikeshareMarkers: (d, status, XHR, bikeshareLayer, self)->
+            for s in d.stations
+                icon_size = 40
+                icon = new L.icon(
+                    "iconUrl": '../images/toronto_circle_logo.png'
+                    "iconSize": [icon_size, icon_size]
+                    "iconAnchor": [icon_size/2, icon_size]
+                    "popupAnchor": [0, -icon_size/2]
+                    "className": "bikeshareLogo"
+                )
+                data =
+                    loc:L.latLng(s.lat, s.long)
+                    options:
+                        title:s.name
+                        alt:s.name
+                        opacity:parseInt(s.nbBikes)/(parseInt(s.nbEmptyDocks)+parseInt(s.nbBikes))
+                if s.installed
+                    popup = self.getBikesharePopup(s)
+                    bikeshareLayer = self.addMarkerToMap(data, icon, popup, bikeshareLayer)
+                else
+                    console.info s.name + "is out of service"
+            self.map.fitBounds bikeshareLayer.getBounds()
+            return
         getBikesharePopup:(s)->
-            name = $ "<h3 />", text:s.name.split(" / ").join(" at ")
+            name = $ "<h3 />", text:s.name.split(/\s\/\s|\/\s|\//).join(" at ")
             graph = $ "<div />", class:"graph"
             inner = $ "<div />", height:parseInt(s.nbBikes)/(parseInt(s.nbEmptyDocks)+parseInt(s.nbBikes))*100 + "%"
             graph.append inner
@@ -133,11 +142,8 @@ define ['jquery', 'mapbox'], (jquery, mapbox)->
 
             availability = $ "<aside />", text:Math.round(parseInt(s.nbBikes)/(parseInt(s.nbEmptyDocks)+parseInt(s.nbBikes))*100,5) + "%"
            
-            minsSinceComm = Math.round(((Date.now() - s.lastCommWithServer) / 1000) / 60, 2)
-            updated = $ "<h5 />", text:"Updated: " + minsSinceComm + " mins"
-            
-            minsSinceUpdate = Math.round(((Date.now() - s.latestUpdateTime) / 1000) / 60, 2)
-            changed = $ "<h5 />", text:"Changed: " + minsSinceUpdate + " mins"
+            updated = $ "<h5 />", text:"Updated: " + Math.round(((Date.now() - s.lastCommWithServer) / 1000) / 60, 2) + " mins"
+            changed = $ "<h5 />", text:"Changed: " + Math.round(((Date.now() - s.latestUpdateTime) / 1000) / 60, 2) + " mins"
 
             container = $ "<div />", { id:s.id, class:"bikesharePopup"  }
             container.append name, graph, availability, numbikes, numdocks, updated, changed

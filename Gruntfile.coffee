@@ -38,7 +38,7 @@ module.exports = (grunt)->
           drop_console: false
         files: [
           expand: true
-          flatten: true
+          flatten: false
           cwd: 'source/javascripts/modules'
           src: '*.js'
           dest:'public/javascripts/modules'
